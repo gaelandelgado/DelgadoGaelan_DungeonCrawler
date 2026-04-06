@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://ehfe6t631yks"]
+
+[ext_resource type="Script" uid="uid://bnfsljduuaqpf" path="res://hud.gd" id="1_rd3kb"]
+[ext_resource type="Texture2D" uid="uid://bjxw6fa05f5nq" path="res://assets/sprites/character_panel.png" id="2_y5tme"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_18exe"]
+atlas = ExtResource("2_y5tme")
+region = Rect2(1, 65.5, 86, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rd3kb"]
+atlas = ExtResource("2_y5tme")
+region = Rect2(124.41471, 72.57869, 55.132683, 4.2409744)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y5tme"]
+atlas = ExtResource("2_y5tme")
+region = Rect2(127.2341, 77.69596, 44.671234, 4.467125)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0jeyp"]
+atlas = ExtResource("2_y5tme")
+region = Rect2(124.776665, 82.861374, 42.34855, 4.5960693)
+
+[node name="HUD" type="CanvasLayer" unique_id=382399440]
+script = ExtResource("1_rd3kb")
+
+[node name="Character Icon Base" type="TextureRect" parent="." unique_id=1701105777]
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_18exe")
+expand_mode = 3
+
+[node name="HealthBar" type="TextureProgressBar" parent="." unique_id=2057363665]
+offset_left = 70.00001
+offset_top = 18.000002
+offset_right = 125.00001
+offset_bottom = 22.000002
+scale = Vector2(2.6, 2.6)
+texture_progress = SubResource("AtlasTexture_rd3kb")
+
+[node name="ManaBar" type="TextureProgressBar" parent="." unique_id=1147540989]
+offset_left = 77.00001
+offset_top = 31.000002
+offset_right = 121.615395
+offset_bottom = 36.769234
+scale = Vector2(2.6, 2.6)
+texture_progress = SubResource("AtlasTexture_y5tme")
+
+[node name="StaminaBar" type="TextureProgressBar" parent="." unique_id=517959595]
+offset_left = 71.0
+offset_top = 44.0
+offset_right = 113.0
+offset_bottom = 48.769234
+scale = Vector2(2.6, 2.6)
+texture_progress = SubResource("AtlasTexture_0jeyp")

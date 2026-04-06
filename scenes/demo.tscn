@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bc8xg8nrkbn1r" path="res://assets/tilesets/Dungeon/decorative_cracks_walls.png" id="6_5fme1"]
 [ext_resource type="Texture2D" uid="uid://dgeltdct8507l" path="res://assets/tilesets/Dungeon/Objects.png" id="7_h5dly"]
 [ext_resource type="AudioStream" uid="uid://dgcgkpsis70l1" path="res://assets/audio/- Dark Tomb - _ Cave Sounds _ 45 Minutes 🦇 [kxqJuc1HHbg].mp3" id="9_h5dly"]
+[ext_resource type="PackedScene" uid="uid://ehfe6t631yks" path="res://scenes/UI/hud.tscn" id="10_h5dly"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l20p6"]
 texture = ExtResource("2_ba4lm")
@@ -1248,3 +1249,5 @@ position = Vector2(47, -99)
 stream = ExtResource("9_h5dly")
 volume_db = -12.123
 autoplay = true
+
+[node name="HUD" parent="." unique_id=382399440 instance=ExtResource("10_h5dly")]

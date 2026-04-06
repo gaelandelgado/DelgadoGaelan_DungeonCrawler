@@ -1913,12 +1913,12 @@ shape = SubResource("CapsuleShape2D_klqur")
 
 [node name="HurtSound1" type="AudioStreamPlayer2D" parent="." unique_id=1924305650]
 stream = ExtResource("14_wyey8")
-volume_db = -11.0
+volume_db = -7.172
 pitch_scale = 0.9
 
 [node name="HurtSound2" type="AudioStreamPlayer2D" parent="." unique_id=651014005]
 stream = ExtResource("15_1bwnf")
-volume_db = -11.0
+volume_db = -7.81
 pitch_scale = 0.9
 
 [node name="WalkAttackSound" type="AudioStreamPlayer2D" parent="." unique_id=237147637]
@@ -1932,6 +1932,10 @@ stream = ExtResource("17_tayva")
 volume_db = -8.294
 pitch_scale = 0.92
 
+[node name="StaminaRegenTimer" type="Timer" parent="." unique_id=1397162553]
+wait_time = 0.5
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="area_entered" from="AttackHitbox" to="." method="_on_attack_hitbox_area_entered"]
 [connection signal="timeout" from="FootstepTimer" to="." method="_on_footstep_timer_timeout"]
+[connection signal="timeout" from="StaminaRegenTimer" to="." method="_on_stamina_regen_timer_timeout"]
