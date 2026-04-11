@@ -1256,6 +1256,7 @@ layer_0/tile_data = PackedInt32Array(131070, 196608, 3, 131071, 262144, 3, 65536
 z_index = 2
 tile_set = SubResource("TileSet_53xcd")
 format = 2
+layer_0/tile_data = PackedInt32Array(-1441785, 131074, 0, -1441777, 131074, 0, -1376244, 327682, 0, -1376255, 458754, 0, -1441791, 65538, 0, -1114094, 131074, 5, -1179630, 131074, 4, -1179625, 131074, 0, -327681, 131074, 0, -327676, 262146, 0, -262145, 262146, 0, -786433, 262146, 0)
 
 [node name="Passable Walls" type="TileMap" parent="." unique_id=214753755]
 z_index = 4
