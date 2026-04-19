@@ -7,7 +7,7 @@ const ATTACK_RANGE = 20.0
 const WANDER_RANGE = 60.0
 const WANDER_TIME = 5.5
 
-enum State {IDLE, WANDER, CHASE, ATTACK}
+enum State {IDLE, WANDER, CHASE, ATTACK, FLEE}
 var state = State.IDLE
 
 @onready var anim = $AnimatedSprite2D
@@ -16,7 +16,9 @@ var state = State.IDLE
 @onready var hurt_sounds = [$HurtSound1, $HurtSound2]
 
 @export var drops_key = false
+@export var is_coward = false
 @onready var key_scene = preload("res://scenes/Dungeon/key.tscn")
+@export var is_level_2 = false
 
 var direction = Vector2.ZERO
 var is_attacking = false
@@ -33,6 +35,12 @@ var damage = 5
 
 func _ready():
 	player = get_tree().get_first_node_in_group("player")
+	if is_coward:
+		anim.modulate = Color(0.5, 0.5, 1.0)
+	if is_level_2:
+		max_health = 6
+		health = 6
+		anim.modulate = Color(1.0, 0.2, 0.2)
 
 func _physics_process(_delta):
 	if is_dead or is_hurt or is_attacking or player == null:
@@ -41,13 +49,19 @@ func _physics_process(_delta):
 		move_and_slide()
 		update_animation()
 		return
-	
+
 	var dist = global_position.distance_to(player.global_position)
-	
+
 	if dist <= ATTACK_RANGE:
-		state = State.ATTACK
+		if is_coward:
+			state = State.FLEE
+		else:
+			state = State.ATTACK
 	elif dist <= CHASE_RANGE:
-		state = State.CHASE
+		if is_coward:
+			state = State.FLEE
+		else:
+			state = State.CHASE
 	else:
 		wander_timer -= _delta
 		if wander_timer <= 0:
@@ -72,6 +86,9 @@ func _physics_process(_delta):
 			if not is_attacking:
 				is_attacking = true
 			velocity = Vector2.ZERO
+		State.FLEE:
+			direction = (global_position - player.global_position).normalized()
+			velocity = direction * RUN_SPEED
 
 	if velocity != Vector2.ZERO and not is_attacking and not is_hurt and not is_dead:
 		if footstep_timer.is_stopped():
@@ -103,7 +120,7 @@ func update_animation():
 	if is_attacking:
 		anim.play("attack_" + get_direction_name())
 		return
-	
+
 	match state:
 		State.IDLE:
 			anim.play("idle_" + get_direction_name())
@@ -113,6 +130,8 @@ func update_animation():
 			anim.play("run_" + get_direction_name())
 		State.ATTACK:
 			anim.play("attack_" + get_direction_name())
+		State.FLEE:
+			anim.play("run_" + get_direction_name())
 
 func get_direction_name() -> String:
 	if abs(direction.y) > abs(direction.x):

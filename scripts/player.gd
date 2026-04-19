@@ -21,7 +21,7 @@ var was_running_when_attacked = false
 var footstep_index = 0
 var last_hurt_sound = 0
 var can_regen_stamina = true
-var has_key = false
+var has_key = 0
 
 var max_health = 10
 var health = 10
